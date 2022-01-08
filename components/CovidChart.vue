@@ -4,17 +4,14 @@ export default {
   mixins: [Line],
   data () {
     return {
-      chartdata: []
+      chartData: []
     }
   },
   mounted () {
     this.$papa.parse(
       'https://raw.githubusercontent.com/ShironCat/covid19-fernandopolis-dec2021-data/main/data.csv',
       { header: true, download: true, complete: _ => this.setChartData(_) }
-      // { download: true },
-      // _ => console.log(_)
     )
-    // this.parseFile()
   },
   methods: {
     setChartData (result) {
@@ -22,7 +19,7 @@ export default {
       const labels = data.map(d => d.Data)
       const total = data.map(d => (parseInt(d.Positivos)))
 
-      this.chartdata = {
+      this.chartData = {
         labels,
         datasets: [
           {
@@ -39,8 +36,7 @@ export default {
         responsive: true,
         maintainAspectRatio: false
       }
-      // console.log('this.chartData ', chartData)
-      this.renderChart(this.chartdata, options)
+      this.renderChart(this.chartData, options)
     }
   }
 }
